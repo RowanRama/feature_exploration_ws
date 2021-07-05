@@ -5,3 +5,6 @@
 [submodule "src/classification"]
 	path = src/classification
 	url = git@github.com:RowanRama/3D_classification.git
+[submodule "src/octomap"]
+	path = src/octomap
+	url = git@github.com:OctoMap/octomap_mapping.git
