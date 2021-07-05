@@ -2,6 +2,6 @@
 	path = src/subt
 	url = git@github.com:RowanRama/subt_emesent_hovermap.git
 	branch = CustomControls
-[submodule "src/3d_classification"]
-	path = src/3d_classification
+[submodule "src/classification"]
+	path = src/classification
 	url = git@github.com:RowanRama/3D_classification.git
