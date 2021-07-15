@@ -103,16 +103,19 @@ def parse_sdf(model_name):
                 continue
             scale = node.find('geometry/mesh/scale').text if node.find('geometry/mesh/scale') is not None else '1 1 1'
             scale = [float(a) for a in filter(lambda a: bool(a), scale.split(' '))]
+            print (scale)
             print(uri)
             mesh = collada.Collada(uri)
 
             nodes = []
             for i, child in enumerate(mesh.scene.nodes):
+                print(child)
                 if child.id == None:
                     continue
 
                 if len(child.transforms) != 0 and isinstance(child.transforms[0], collada.scene.MatrixTransform):
                     t = child.transforms[0].matrix[:3, 3]
+                    print(t)
                     child.transforms = []
                     child.transforms.append(collada.scene.TranslateTransform(t[0], t[1], t[2]))
                     parent = collada.scene.Node('parent_' + child.id, children=[child])
@@ -152,11 +155,13 @@ def parse_world(world_path):
         for mesh in extracted_meshes:
             for i, node in enumerate(mesh.scene.nodes):
                 parent = collada.scene.Node('parent__' + node.id, children=[node])
-                parent.transforms.append(collada.scene.TranslateTransform(pose[0], pose[1], pose[2]))
+                print(parent.transforms)
+                parent.transforms.append(collada.scene.TranslateTransform(pose[0]*100, pose[1]*100, pose[2]*100))
                 parent.transforms.append(collada.scene.RotateTransform(1, 0, 0, pose[3] * 180/pi))
                 parent.transforms.append(collada.scene.RotateTransform(0, 1, 0, pose[4] * 180/pi))
                 parent.transforms.append(collada.scene.RotateTransform(0, 0, 1, pose[5] * 180/pi))
                 mesh.scene.nodes[i] = parent
+                print(parent.transforms)
 
         meshes.extend(extracted_meshes)
 

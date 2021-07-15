@@ -34,7 +34,6 @@
     <include>
       <name>grey_wall</name>
       <uri>model://radio_tower</uri>
-      <scale>0.1 0.1 0.1</scale>
       <pose>-2 0 0 0 0 -1.57</pose>
     </include>
 
